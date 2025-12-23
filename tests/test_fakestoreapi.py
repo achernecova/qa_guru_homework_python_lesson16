@@ -5,7 +5,7 @@ import requests
 
 
 
-def test_api():
+def test_api_softmg():
     resource = requests.get("https://preprod.softmg.ru/api/v2/cases")
     print("Привет")
     if resource.status_code == 200:

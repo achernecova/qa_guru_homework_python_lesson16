@@ -19,7 +19,7 @@ def test_get_product_positive():
     response = requests.get(f"{BASE_URL}/products/1")
 
     # Assert — проверяем, что запрос успешный
-    assert response.status_code == 201
+    assert response.status_code == 200
 
     # Assert — проверяем, что тело ответа соответствует схеме Product
     # (поля присутствуют и имеют корректные типы)
