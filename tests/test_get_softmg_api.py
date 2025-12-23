@@ -6,7 +6,7 @@ import requests
 def test_api_softmg():
     resource = requests.get("https://preprod.softmg.ru/api/v2/cases")
     print("Привет")
-    if resource.status_code == 200:
+    if resource.status_code == 201:
         data = resource.json()
         pretty_json = json.dumps(data, indent=4)
         print(pretty_json)
