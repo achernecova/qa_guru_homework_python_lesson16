@@ -1,0 +1,6086 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "alpha-softmg",
+    "description": "alpha-softmg redesign api v2",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/page/about-company": {
+      "get": {
+        "summary": "Метод получения страницы \"О нас\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/calculator": {
+      "get": {
+        "summary": "Метод получения страницы \"Калькулятор\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/examples": {
+      "get": {
+        "summary": "Метод получения страницы \"Кейсы\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cases": {
+      "get": {
+        "summary": "Метод получения кейсов по тегу / пагинация",
+        "tags": [
+          "pages",
+          "tags"
+        ],
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "required": false,
+            "description": "тег",
+            "schema": {
+              "type": "string",
+              "example": "cms"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginationAndTagsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cases/{slug}": {
+      "get": {
+        "summary": "Метод получения кейсов по слагу",
+        "tags": [
+          "pages",
+          "detail"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "слаг",
+            "schema": {
+              "type": "string",
+              "example": "alpfederation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/main": {
+      "get": {
+        "summary": "Метод получения главной страницы",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/reviews": {
+      "get": {
+        "summary": "Метод получения страницы \"Отзывы\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reviews": {
+      "get": {
+        "summary": "Метод получения отзывов при пагинации",
+        "tags": [
+          "pages",
+          "pagination"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginationAndTagsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Метод получения результатов поиска",
+        "tags": [
+          "pages",
+          "pagination"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "запрос на поиск",
+            "schema": {
+              "type": "string",
+              "example": "сайт"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginationAndTagsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/offers": {
+      "get": {
+        "summary": "Метод получения страницы \"Услуги\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offers": {
+      "get": {
+        "summary": "Метод получения услуг при пагинации",
+        "tags": [
+          "pages",
+          "pagination"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          },
+          {
+            "name": "section_id",
+            "in": "query",
+            "required": false,
+            "description": "id секции",
+            "schema": {
+              "type": "number",
+              "example": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginationAndTagsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offers/slug": {
+      "get": {
+        "summary": "Метод получения детальной страницы \"Услуги\"",
+        "tags": [
+          "pages",
+          "detail"
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "description": "слаг",
+            "schema": {
+              "type": "string",
+              "example": "development"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/vakansii": {
+      "get": {
+        "summary": "Метод получения страницы \"Вакансии\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vacancy/{slug}": {
+      "get": {
+        "summary": "Метод получения кейсов по слагу",
+        "tags": [
+          "pages",
+          "detail"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "слаг",
+            "schema": {
+              "type": "string",
+              "example": "frontend-razrabotchik"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/page/articles": {
+      "get": {
+        "summary": "Метод получения страницы \"Статьи\"",
+        "tags": [
+          "pages"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles": {
+      "get": {
+        "summary": "Метод получения статей по тегу и странице",
+        "tags": [
+          "pages",
+          "pagination",
+          "tags"
+        ],
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "required": false,
+            "description": "тег",
+            "schema": {
+              "type": "string",
+              "example": "cms"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "параметр пагинации",
+            "schema": {
+              "type": "number",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginationAndTagsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{slug}": {
+      "get": {
+        "summary": "Метод получения статей по слагу",
+        "tags": [
+          "pages",
+          "detail"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "слаг",
+            "schema": {
+              "type": "string",
+              "example": "symfony"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ с содержимым страницы",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetailPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StandardPageResponse": {
+        "type": "object",
+        "properties": {
+          "date_create": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breadcrumb": {
+            "$ref": "#/components/schemas/Breadcrumbs"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/SEO"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Section"
+            }
+          }
+        }
+      },
+      "DetailPageResponse": {
+        "type": "object",
+        "properties": {
+          "create_date": {
+            "nullable": true,
+            "type": "string"
+          },
+          "date_create": {
+            "nullable": true,
+            "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "breadcrumb": {
+            "$ref": "#/components/schemas/Breadcrumbs"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/SEO"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Section"
+            }
+          },
+          "likes": {
+            "type": "string"
+          },
+          "views": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginationAndTagsResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "number"
+              },
+              "offset": {
+                "type": "number"
+              },
+              "count": {
+                "type": "number"
+              }
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/CasesTagsResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/ArticlesTagsResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/ReviewsPaginationResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/ServicesPaginationResponse"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "ServicesItemsResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "date_create": {
+            "type": "string",
+            "nullable": true
+          },
+          "detail_picture": {
+            "type": "string",
+            "nullable": true
+          },
+          "sort": {
+            "type": "string",
+            "nullable": true
+          },
+          "section_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "background_color": {
+            "type": "string",
+            "nullable": true
+          },
+          "background_image": {
+            "type": "string",
+            "nullable": true
+          },
+          "seo_description": {
+            "type": "string",
+            "nullable": true
+          },
+          "breadcrumb": {
+            "$ref": "#/components/schemas/Breadcrumbs"
+          }
+        }
+      },
+      "CasesTagsResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "seo_description": {
+            "type": "string"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/Tags"
+          }
+        }
+      },
+      "ArticlesTagsResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "create_date": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "seo_description": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "string"
+          },
+          "views": {
+            "type": "string"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/Tags"
+          }
+        }
+      },
+      "ReviewsPaginationResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "seo_description": {
+            "type": "string"
+          },
+          "reviews_content": {
+            "type": "string"
+          },
+          "company_title": {
+            "type": "string"
+          },
+          "site_title": {
+            "type": "string"
+          },
+          "site_link": {
+            "type": "string"
+          }
+        }
+      },
+      "ServicesPaginationResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "background_color": {
+            "type": "string"
+          },
+          "seo_description": {
+            "type": "string"
+          }
+        }
+      },
+      "Tags": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Tag"
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "required": [
+          "title",
+          "name",
+          "slug",
+          "link"
+        ],
+        "properties": {
+          "title": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "slug": {
+            "nullable": true,
+            "type": "string"
+          },
+          "date_create": {
+            "nullable": true,
+            "type": "string"
+          },
+          "link": {
+            "nullable": true,
+            "type": "string"
+          }
+        }
+      },
+      "Breadcrumbs": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Breadcrumb"
+        }
+      },
+      "Breadcrumb": {
+        "type": "object",
+        "required": [
+          "title",
+          "url"
+        ],
+        "properties": {
+          "title": {
+            "nullable": true,
+            "type": "string"
+          },
+          "url": {
+            "nullable": true,
+            "type": "string"
+          }
+        }
+      },
+      "SEO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "nullable": true,
+            "type": "string"
+          },
+          "keywords": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          }
+        }
+      },
+      "Section": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TextBlockSection"
+          },
+          {
+            "$ref": "#/components/schemas/DescrServicesSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContentLandingSection"
+          },
+          {
+            "$ref": "#/components/schemas/NumBlockSection"
+          },
+          {
+            "$ref": "#/components/schemas/FormsSection"
+          },
+          {
+            "$ref": "#/components/schemas/SliderSection"
+          },
+          {
+            "$ref": "#/components/schemas/ReviewsSection"
+          },
+          {
+            "$ref": "#/components/schemas/MaybeInterestSection"
+          },
+          {
+            "$ref": "#/components/schemas/CalculatorSection"
+          },
+          {
+            "$ref": "#/components/schemas/CasesViewSection"
+          },
+          {
+            "$ref": "#/components/schemas/TagBlockSection"
+          },
+          {
+            "$ref": "#/components/schemas/ClientTrustSection"
+          },
+          {
+            "$ref": "#/components/schemas/MainCasesSection"
+          },
+          {
+            "$ref": "#/components/schemas/TaskSection"
+          },
+          {
+            "$ref": "#/components/schemas/SolutionsSection"
+          },
+          {
+            "$ref": "#/components/schemas/GallerySection"
+          },
+          {
+            "$ref": "#/components/schemas/NextCaseSection"
+          },
+          {
+            "$ref": "#/components/schemas/ReviewsViewSection"
+          },
+          {
+            "$ref": "#/components/schemas/OffersSection"
+          },
+          {
+            "$ref": "#/components/schemas/AdvantTilesSection"
+          },
+          {
+            "$ref": "#/components/schemas/AdvantagesSectionData"
+          },
+          {
+            "$ref": "#/components/schemas/ArticleBlocksSection"
+          },
+          {
+            "$ref": "#/components/schemas/ArticleFooterSection"
+          },
+          {
+            "$ref": "#/components/schemas/ArticleAllSection"
+          },
+          {
+            "$ref": "#/components/schemas/ArticlesSection"
+          },
+          {
+            "$ref": "#/components/schemas/ArticlesViewSection"
+          },
+          {
+            "$ref": "#/components/schemas/BlockCardsSection"
+          },
+          {
+            "$ref": "#/components/schemas/BlockCardsServicesSection"
+          },
+          {
+            "$ref": "#/components/schemas/BlockCatSection"
+          },
+          {
+            "$ref": "#/components/schemas/BlockSiteTypesSection"
+          },
+          {
+            "$ref": "#/components/schemas/BlockTextSection"
+          },
+          {
+            "$ref": "#/components/schemas/BlockUniversalSection"
+          },
+          {
+            "$ref": "#/components/schemas/CardBlockSection"
+          },
+          {
+            "$ref": "#/components/schemas/CasesSection"
+          },
+          {
+            "$ref": "#/components/schemas/ClickReportSection"
+          },
+          {
+            "$ref": "#/components/schemas/CommonFrameworksSection"
+          },
+          {
+            "$ref": "#/components/schemas/ComprehensiveDevSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContactsCredentialsSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContactsInfoSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContentDescrSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContentLandingNewSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContentLandingThreeSection"
+          },
+          {
+            "$ref": "#/components/schemas/ContentPopupSection"
+          },
+          {
+            "$ref": "#/components/schemas/CoopVariantsSection"
+          },
+          {
+            "$ref": "#/components/schemas/CreateMobileSection"
+          },
+          {
+            "$ref": "#/components/schemas/DescrServicesColumnSection"
+          },
+          {
+            "$ref": "#/components/schemas/DescrServicesNoTitleSection"
+          },
+          {
+            "$ref": "#/components/schemas/DescrServicesSiteTypesSection"
+          },
+          {
+            "$ref": "#/components/schemas/DesignDevSection"
+          },
+          {
+            "$ref": "#/components/schemas/DetailDescrSection"
+          },
+          {
+            "$ref": "#/components/schemas/DevTimeSection"
+          },
+          {
+            "$ref": "#/components/schemas/DifferencesServSection"
+          },
+          {
+            "$ref": "#/components/schemas/DiscussionSection"
+          },
+          {
+            "$ref": "#/components/schemas/FaqSection"
+          },
+          {
+            "$ref": "#/components/schemas/HowWorkingSection"
+          },
+          {
+            "$ref": "#/components/schemas/IncludedPriceNoAddSection"
+          },
+          {
+            "$ref": "#/components/schemas/IncludedPriceSection"
+          },
+          {
+            "$ref": "#/components/schemas/MainArticlesSection"
+          },
+          {
+            "$ref": "#/components/schemas/MainSection"
+          },
+          {
+            "$ref": "#/components/schemas/MainUslugiSection"
+          },
+          {
+            "$ref": "#/components/schemas/ModalSectSection"
+          },
+          {
+            "$ref": "#/components/schemas/MoreArticlesSection"
+          },
+          {
+            "$ref": "#/components/schemas/NewAdvantagesSection"
+          },
+          {
+            "$ref": "#/components/schemas/NewDevLandingSection"
+          },
+          {
+            "$ref": "#/components/schemas/NewDevSlidesSection"
+          },
+          {
+            "$ref": "#/components/schemas/NumBlockTwoSection"
+          },
+          {
+            "$ref": "#/components/schemas/OtherCasesSection"
+          },
+          {
+            "$ref": "#/components/schemas/OurAdvantSection"
+          },
+          {
+            "$ref": "#/components/schemas/OutsourceWorkSection"
+          },
+          {
+            "$ref": "#/components/schemas/PlatformFeaturesSection"
+          },
+          {
+            "$ref": "#/components/schemas/PriceDevSection"
+          },
+          {
+            "$ref": "#/components/schemas/PriceNewSection"
+          },
+          {
+            "$ref": "#/components/schemas/PricesSolutionsSection"
+          },
+          {
+            "$ref": "#/components/schemas/RevEpmSection"
+          },
+          {
+            "$ref": "#/components/schemas/ScopeAppOneSection"
+          },
+          {
+            "$ref": "#/components/schemas/ScopeAppTwoSection"
+          },
+          {
+            "$ref": "#/components/schemas/ScopeAppSection"
+          },
+          {
+            "$ref": "#/components/schemas/SiteTopicsSection"
+          },
+          {
+            "$ref": "#/components/schemas/StructureCompanySection"
+          },
+          {
+            "$ref": "#/components/schemas/TariffBlockSection"
+          },
+          {
+            "$ref": "#/components/schemas/TechBlocksSection"
+          },
+          {
+            "$ref": "#/components/schemas/VacancySection"
+          },
+          {
+            "$ref": "#/components/schemas/WeDoSection"
+          },
+          {
+            "$ref": "#/components/schemas/WhatDoColSection"
+          },
+          {
+            "$ref": "#/components/schemas/WhatDoSection"
+          },
+          {
+            "$ref": "#/components/schemas/WhatToGetSection"
+          },
+          {
+            "$ref": "#/components/schemas/WhyChooiseUsSection"
+          },
+          {
+            "$ref": "#/components/schemas/WorkPrinciplesSection"
+          },
+          {
+            "$ref": "#/components/schemas/DevStagesSection"
+          },
+          {
+            "$ref": "#/components/schemas/CardBlockNewSection"
+          },
+          {
+            "$ref": "#/components/schemas/OutstaffingAdvantagesSection"
+          },
+          {
+            "$ref": "#/components/schemas/WhatWeUseNewSection"
+          },
+          {
+            "$ref": "#/components/schemas/CoopStagesSection"
+          },
+          {
+            "$ref": "#/components/schemas/MainBannerNewSection"
+          },
+          {
+            "$ref": "#/components/schemas/TurnkeyBlockSection"
+          },
+          {
+            "$ref": "#/components/schemas/WhoNeedsSection"
+          },
+          {
+            "$ref": "#/components/schemas/DevelopWithUsSection"
+          },
+          {
+            "$ref": "#/components/schemas/MoreQuestionsSection"
+          },
+          {
+            "$ref": "#/components/schemas/OutstaffOutsourceSection"
+          },
+          {
+            "$ref": "#/components/schemas/CompanyHeaderSection"
+          },
+          {
+            "$ref": "#/components/schemas/TeamSection"
+          },
+          {
+            "$ref": "#/components/schemas/RequisitesSection"
+          },
+          {
+            "$ref": "#/components/schemas/AboutVacancySection"
+          },
+          {
+            "$ref": "#/components/schemas/SalarySection"
+          },
+          {
+            "$ref": "#/components/schemas/EmploymentTypeSection"
+          }
+        ]
+      },
+      "TextBlockSection": {
+        "type": "object",
+        "required": [
+          "name",
+          "slug",
+          "title",
+          "descr"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "text_block"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DescrServicesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "descr_services"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string",
+                "nullable": true
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              },
+              "image": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr_2_col": {
+                "nullable": true,
+                "type": "string"
+              },
+              "list_title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "list_elements": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ContentLandingSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "nullable": true
+              },
+              "slug": {
+                "type": "string",
+                "nullable": true
+              },
+              "descr": {
+                "type": "string",
+                "nullable": true
+              },
+              "text_c": {
+                "type": "string",
+                "nullable": true
+              },
+              "text_fs": {
+                "type": "string",
+                "nullable": true
+              },
+              "list_elements": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NumBlockSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "nullable": true
+              },
+              "slug": {
+                "type": "string",
+                "nullable": true
+              },
+              "subtitle": {
+                "type": "string",
+                "nullable": true
+              },
+              "descr": {
+                "type": "string",
+                "nullable": true
+              },
+              "num_elem": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "price": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "descr_title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "descr": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "price_check": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "price_dev_list": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "FormsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              },
+              "form_type": {
+                "type": "string",
+                "example": "form3",
+                "nullable": true
+              }
+            }
+          }
+        }
+      },
+      "SliderSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "image": {
+                "nullable": true,
+                "type": "string"
+              },
+              "slider": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ReviewsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "reviews_content": {
+                "nullable": true,
+                "type": "string"
+              },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "reviews_content": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "company_title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "site_title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "site_link": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "image": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "MaybeInterestSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "interest_elem": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "icon_img": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "elem_cat": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "elem_link": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "elem_color": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "text_color": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CalculatorSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "CasesViewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "articles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "date_create": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "detail_picture": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "section_name": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "breadcrumb": {
+                      "$ref": "#/components/schemas/Breadcrumbs"
+                    },
+                    "seo_description": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "image": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "slug": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "link": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "title": {
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "totalPage": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TagBlockSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "link": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ClientTrustSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "clients": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "img": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "MainCasesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              },
+              "year": {
+                "nullable": true,
+                "type": "string"
+              },
+              "stack_tech_elem": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "icon_img": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TaskSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              },
+              "image": {
+                "nullable": true,
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SolutionsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr": {
+                "nullable": true,
+                "type": "string"
+              },
+              "descr_column": {
+                "nullable": true,
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "GallerySection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "gallery": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NextCaseSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "title": {
+                "nullable": true,
+                "type": "string"
+              },
+              "link": {
+                "nullable": true,
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ReviewsViewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "rewiews": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "totalPage": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "date_create": {
+            "nullable": true,
+            "type": "string"
+          },
+          "detail_picture": {
+            "nullable": true,
+            "type": "string"
+          },
+          "section_name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "url": {
+            "nullable": true,
+            "type": "string"
+          },
+          "breadcrumb": {
+            "$ref": "#/components/schemas/Breadcrumbs"
+          },
+          "seo_description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "slug": {
+            "nullable": true,
+            "type": "string"
+          },
+          "title": {
+            "nullable": true,
+            "type": "string"
+          },
+          "reviews_content": {
+            "nullable": true,
+            "type": "string"
+          },
+          "company_title": {
+            "nullable": true,
+            "type": "string"
+          },
+          "site_title": {
+            "nullable": true,
+            "type": "string"
+          },
+          "site_link": {
+            "nullable": true,
+            "type": "string"
+          },
+          "image": {
+            "nullable": true,
+            "type": "string"
+          }
+        }
+      },
+      "OffersSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "nullable": true,
+                "type": "string"
+              },
+              "date_create": {
+                "nullable": true,
+                "type": "string"
+              },
+              "detail_picture": {
+                "nullable": true,
+                "type": "string"
+              },
+              "iblock_section_id": {
+                "nullable": true,
+                "type": "string"
+              },
+              "iblock_id": {
+                "nullable": true,
+                "type": "string"
+              },
+              "sort": {
+                "nullable": true,
+                "type": "string"
+              },
+              "description": {
+                "nullable": true,
+                "type": "string"
+              },
+              "slug": {
+                "nullable": true,
+                "type": "string"
+              },
+              "total_page": {
+                "nullable": true,
+                "type": "number"
+              },
+              "elements": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ServicesItemsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AdvantTilesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/AdvantagesSectionData"
+          }
+        }
+      },
+      "AdvantagesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "tiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdvantagesSectionElements"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "tiles"
+        ]
+      },
+      "AdvantagesSectionElements": {
+        "type": "object",
+        "properties": {
+          "icon_img": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "icon_img",
+          "title"
+        ]
+      },
+      "ArticleBlocksSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ArticleBlocksData"
+          }
+        }
+      },
+      "ArticleBlocksData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/FeedbackArticle"
+                },
+                {
+                  "$ref": "#/components/schemas/ArticleDescr"
+                },
+                {
+                  "$ref": "#/components/schemas/ArticleContent"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "FeedbackArticle": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/AFeedbackData"
+          }
+        }
+      },
+      "AFeedbackData": {
+        "type": "object",
+        "properties": {
+          "bg": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "social_title": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "socials": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "bg",
+          "title"
+        ]
+      },
+      "ArticleDescr": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ADescriptionData"
+          }
+        }
+      },
+      "ADescriptionData": {
+        "type": "object",
+        "properties": {
+          "descr": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "descr"
+        ]
+      },
+      "ArticleContent": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/AContentBlock"
+          }
+        }
+      },
+      "AContentBlock": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "text_addtitonal": {
+            "type": "string"
+          },
+          "additional": {
+            "type": "string"
+          },
+          "blockquote": {
+            "type": "string"
+          },
+          "author": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockquoteAuthorProps"
+            }
+          }
+        }
+      },
+      "BlockquoteAuthorProps": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "job_title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "job_title"
+        ]
+      },
+      "ArticleFooterSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ArticleFooterData"
+          }
+        }
+      },
+      "ArticleFooterData": {
+        "type": "object",
+        "properties": {
+          "author": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "job_title": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string"
+              },
+              "date_create": {
+                "type": "string"
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title"
+              ]
+            },
+            "required": [
+              "title"
+            ]
+          },
+          "likes": {
+            "type": "string"
+          },
+          "views": {
+            "type": "string"
+          },
+          "create_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "author",
+          "tags",
+          "likes",
+          "views",
+          "create_date"
+        ]
+      },
+      "ArticleAllSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ArticleAllData"
+          }
+        }
+      },
+      "ArticleAllData": {
+        "type": "object",
+        "properties": {
+          "articles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "likes": {
+                  "type": "string"
+                },
+                "views": {
+                  "type": "string"
+                },
+                "create_date": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ArticlesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ArticleAllData"
+          }
+        }
+      },
+      "ArticlesViewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ArticleAllData"
+          }
+        }
+      },
+      "ArticlesViewData": {
+        "type": "object",
+        "properties": {
+          "articles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticleProps"
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetaProps"
+          }
+        }
+      },
+      "ArticleProps": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "string"
+          },
+          "views": {
+            "type": "string"
+          },
+          "create_date": {
+            "type": "string"
+          }
+        }
+      },
+      "MetaProps": {
+        "type": "object",
+        "properties": {
+          "totalPage": {
+            "type": "number"
+          }
+        }
+      },
+      "BlockCardsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/BlockCardsSectionData"
+          }
+        }
+      },
+      "BlockCardsSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardProps"
+            }
+          }
+        }
+      },
+      "CardProps": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "icon_img": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          }
+        }
+      },
+      "BlockCardsServicesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/BlockCardsServicesSectionData"
+          }
+        }
+      },
+      "BlockCardsServicesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "BlockCatSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/BlockCatSectionData"
+          }
+        }
+      },
+      "BlockCatSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "block_cat": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "BlockSiteTypesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/BlockSiteTypesSectionData"
+          }
+        }
+      },
+      "BlockSiteTypesSectionData": {
+        "type": "object",
+        "properties": {
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "blocks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "list": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "link": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "BlockTextSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/BlockTextSectionData"
+          }
+        }
+      },
+      "BlockTextSectionData": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "BlockUniversalSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/BlockUniversalSectionData"
+          }
+        }
+      },
+      "BlockUniversalSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CardBlockSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CardBlockSectionData"
+          }
+        }
+      },
+      "CardBlockSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list_card_elem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardProps"
+            }
+          }
+        }
+      },
+      "CasesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CasesSectionData"
+          }
+        }
+      },
+      "CasesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CasesTwoSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CasesTwoSectionData"
+          }
+        }
+      },
+      "CasesTwoSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ClickReportSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ClickReportSectionData"
+          }
+        }
+      },
+      "ClickReportSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "table_elem": {
+            "type": "object"
+          }
+        }
+      },
+      "CommonFrameworksSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CommonFrameworksSectionData"
+          }
+        }
+      },
+      "CommonFrameworksSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "frameworks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "object"
+                },
+                "descr": {
+                  "type": "object"
+                },
+                "icon_img": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ComprehensiveDevSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ComprehensiveDevSectionData"
+          }
+        }
+      },
+      "ComprehensiveDevSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          }
+        }
+      },
+      "ContactsCredentialsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ContactsCredentialsSectionData"
+          }
+        }
+      },
+      "ContactsCredentialsSectionData": {
+        "type": "object",
+        "properties": {
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "mail": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ContactsInfoSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ContactsInfoSectionData"
+          }
+        }
+      },
+      "ContactsInfoSectionData": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "fednumber": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "worktime": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentDescrSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ContactsInfoSectionData"
+          }
+        }
+      },
+      "ContentDescrSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentLandingNewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ContentLandingNewSectionData"
+          }
+        }
+      },
+      "ContentLandingNewSectionData": {
+        "type": "object",
+        "properties": {
+          "descr": {
+            "type": "string"
+          },
+          "title_in": {
+            "type": "string"
+          },
+          "title_out": {
+            "type": "string"
+          },
+          "list_elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ContentLandingThreeSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ContentLandingThreeSectionData"
+          }
+        }
+      },
+      "ContentLandingThreeSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list_elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "text_c": {
+            "type": "string"
+          },
+          "text_fs": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentPopupSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ContentPopupSectionData"
+          }
+        }
+      },
+      "ContentPopupSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          }
+        }
+      },
+      "CoopVariantsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CoopVariantsSectionData"
+          }
+        }
+      },
+      "CoopVariantsSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CreateMobileSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CreateMobileSectionData"
+          }
+        }
+      },
+      "CreateMobileSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr_up": {
+            "type": "string"
+          },
+          "descr_down": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "DescrServicesColumnSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DescrServicesColumnSectionData"
+          }
+        }
+      },
+      "DescrServicesColumnSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr1": {
+            "type": "string"
+          },
+          "descr2": {
+            "type": "string"
+          },
+          "list_title": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "list_elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DescrServicesNoTitleSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DescrServicesColumnSectionData"
+          }
+        }
+      },
+      "DescrServicesSiteTypesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DescrServicesSiteTypesSectionData"
+          }
+        }
+      },
+      "DescrServicesSiteTypesSectionData": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "list": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "link": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DesignDevSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DesignDevSectionData"
+          }
+        }
+      },
+      "DesignDevSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr1": {
+            "type": "string"
+          },
+          "descr2": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "image_right": {
+            "type": "boolean"
+          },
+          "design_dev": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DetailDescrSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DetailDescrSectionData"
+          }
+        }
+      },
+      "DetailDescrSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "slider_title": {
+            "type": "string"
+          },
+          "slides": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "slider_title": {
+                  "type": "string"
+                },
+                "title_plus": {
+                  "type": "string"
+                },
+                "descr_plus": {
+                  "type": "string"
+                },
+                "title_minus": {
+                  "type": "string"
+                },
+                "descr_minus": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DevTimeSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DevTimeSectionData"
+          }
+        }
+      },
+      "DevTimeSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "dev_time": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "hours_month": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "string"
+                },
+                "benefit": {
+                  "type": "string"
+                },
+                "bestseller": {
+                  "type": "string"
+                },
+                "hot_discounts": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DifferencesServSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DifferencesServSectionData"
+          }
+        }
+      },
+      "DifferencesServSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "title_descr": {
+            "type": "string"
+          },
+          "differences_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DiscussionSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DiscussionSectionData"
+          }
+        }
+      },
+      "DiscussionSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "FaqSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/FaqSectionData"
+          }
+        }
+      },
+      "FaqSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "button_visible": {
+            "type": "string"
+          },
+          "faq_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "desc": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "HowWorkingSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/HowWorkingSectionData"
+          }
+        }
+      },
+      "HowWorkingSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "how_working": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "IncludedPriceNoAddSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/IncludedPriceNoAddSectionData"
+          }
+        }
+      },
+      "IncludedPriceNoAddSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "above_title": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "IncludedPriceSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/IncludedPriceSectionData"
+          }
+        }
+      },
+      "IncludedPriceSectionData": {
+        "type": "object",
+        "properties": {
+          "additionally_elem": {
+            "type": "string"
+          },
+          "above_title": {
+            "type": "string"
+          },
+          "list_title": {
+            "type": "string"
+          },
+          "descr_additionally": {
+            "type": "string"
+          },
+          "title_additionally": {
+            "type": "string"
+          },
+          "list_elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MainArticlesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/MainArticlesSectionData"
+          }
+        }
+      },
+      "MainArticlesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "string"
+          },
+          "views": {
+            "type": "string"
+          },
+          "create_date": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MainSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/MainSectionData"
+          }
+        }
+      },
+      "MainSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "button_text": {
+            "type": "string"
+          },
+          "popup": {
+            "type": "string"
+          },
+          "stack_title": {
+            "type": "string"
+          },
+          "stack_tech_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "icon_img": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "hashtag_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MainUslugiSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/MainUslugiSectionData"
+          }
+        }
+      },
+      "MainUslugiSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ModalSectSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ModalSectSectionData"
+          }
+        }
+      },
+      "ModalSectSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          }
+        }
+      },
+      "MoreArticlesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/MoreArticlesSectionData"
+          }
+        }
+      },
+      "MoreArticlesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "string"
+          },
+          "views": {
+            "type": "string"
+          },
+          "create_date": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "slug": {
+            "type": "string"
+          }
+        }
+      },
+      "NewAdvantagesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/NewAdvantagesSectionData"
+          }
+        }
+      },
+      "NewAdvantagesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "advant_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NewDevLandingSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/NewDevLandingSectionData"
+          }
+        }
+      },
+      "NewDevLandingSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "new_dev": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NewDevSlidesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/NewDevSlidesSectionData"
+          }
+        }
+      },
+      "NewDevSlidesSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "new_dev": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NumBlockTwoSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/NumBlockTwoSectionData"
+          }
+        }
+      },
+      "NumBlockTwoSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "num_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OtherCasesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/OtherCasesSectionData"
+          }
+        }
+      },
+      "OtherCasesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OurAdvantSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/OurAdvantSectionData"
+          }
+        }
+      },
+      "OurAdvantSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "advant_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OutsourceWorkSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/OutsourceWorkSectionData"
+          }
+        }
+      },
+      "OutsourceWorkSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "outsource_work": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PlatformFeaturesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/PlatformFeaturesSectionData"
+          }
+        }
+      },
+      "PlatformFeaturesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "platform_features": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PriceDevSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/PriceDevSectionData"
+          }
+        }
+      },
+      "PriceDevSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "price_dev_elem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingProps"
+            }
+          }
+        }
+      },
+      "PricingProps": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr_title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "price_check": {
+            "type": "string"
+          },
+          "price_dev_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PriceNewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/PriceNewSectionData"
+          }
+        }
+      },
+      "PriceNewSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "main_sub_title": {
+            "type": "string"
+          },
+          "main_title": {
+            "type": "string"
+          },
+          "add_title": {
+            "type": "string"
+          },
+          "main_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "icons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "add_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PricesSolutionsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/PricesSolutionsSectionData"
+          }
+        }
+      },
+      "PricesSolutionsSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "prices_elem": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Case"
+            }
+          }
+        }
+      },
+      "Case": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "cms_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "advantages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RevEpmSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/RevEpmSectionData"
+          }
+        }
+      },
+      "RevEpmSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "button": {
+            "type": "string"
+          },
+          "reviews_emp": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "review": {
+                  "type": "string"
+                },
+                "employees": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "job_title": {
+                        "type": "string"
+                      },
+                      "image": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ScopeAppOneSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ScopeAppOneSectionData"
+          }
+        }
+      },
+      "ScopeAppTwoSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ScopeAppOneSectionData"
+          }
+        }
+      },
+      "ScopeAppOneSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr_up": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr_down": {
+            "type": "string"
+          },
+          "list_title": {
+            "type": "string"
+          },
+          "scope_app_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ScopeAppSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/ScopeAppSectionData"
+          }
+        }
+      },
+      "ScopeAppSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr_up": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr_down": {
+            "type": "string"
+          },
+          "list_title": {
+            "type": "string"
+          },
+          "scope_app_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "left_image": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SiteTopicsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/SiteTopicsSectionData"
+          }
+        }
+      },
+      "SiteTopicsSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "site_topics_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "StructureCompanySection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/SiteTopicsSectionData"
+          }
+        }
+      },
+      "StructureCompanySectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "managers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "job_title": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "company_departments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "subtitle": {
+                  "type": "string"
+                },
+                "employees": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TariffBlockSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/TariffBlockSectionData"
+          }
+        }
+      },
+      "TariffBlockSectionData": {
+        "type": "object",
+        "properties": {
+          "tariffs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "hit": {
+                  "type": "string"
+                },
+                "title": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "monitoring": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "extension": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "consulting": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "antivirus": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "update": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "update_content": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "backup": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "programming": {
+                  "$ref": "#/components/schemas/Params"
+                },
+                "price": {
+                  "$ref": "#/components/schemas/Params"
+                }
+              }
+            }
+          },
+          "names": {
+            "type": "object"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "Params": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "string": {
+            "type": "string"
+          }
+        }
+      },
+      "TechBlocksSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/TechBlocksSectionData"
+          }
+        }
+      },
+      "TechBlocksSectionData": {
+        "type": "object",
+        "properties": {
+          "tech": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tech_elem": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "tech_elem": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "icon_img": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "VacancySection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/VacancySectionData"
+          }
+        }
+      },
+      "VacancySectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object"
+          },
+          "slug": {
+            "type": "object"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "terms": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ContentProps": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "props": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "about_vacancy": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ConditionsProps": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "salary": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "employment": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WeDoSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WeDoSectionData"
+          }
+        }
+      },
+      "WeDoSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "advant_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WhatDoColSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhatDoColSectionData"
+          }
+        }
+      },
+      "WhatDoSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhatDoColSectionData"
+          }
+        }
+      },
+      "WhatDoColSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "descr2": {
+            "type": "string"
+          },
+          "what_do": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WhatToGetSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhatToGetSectionData"
+          }
+        }
+      },
+      "WhatToGetSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WhatWeUseSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhatWeUseSectionData"
+          }
+        }
+      },
+      "WhatWeUseSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "we_use": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WhyChooiseUsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhyChooiseUsSectionData"
+          }
+        }
+      },
+      "WhyChooiseUsSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "why_chooise_us_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WorkPrinciplesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WorkPrinciplesSectionData"
+          }
+        }
+      },
+      "WorkPrinciplesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "work_principles_elem": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "bg_color": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "icon_img": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DevStagesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DevStagesSectionData"
+          }
+        }
+      },
+      "DevStagesSectionData": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "subdescr": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CardBlockNewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CardBlockNewSectionData"
+          }
+        }
+      },
+      "CardBlockNewSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "icon_img": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "OutstaffingAdvantagesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/OutstaffingAdvantagesSectionData"
+          }
+        }
+      },
+      "OutstaffingAdvantagesSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WhatWeUseNewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhatWeUseNewSectionData"
+          }
+        }
+      },
+      "WhatWeUseNewSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "list": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "slug": {
+                        "type": "string"
+                      },
+                      "date_create": {
+                        "type": "string"
+                      },
+                      "icon_img": {
+                        "type": "string"
+                      },
+                      "link": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CoopStagesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CoopStagesSectionData"
+          }
+        }
+      },
+      "CoopStagesSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MainBannerNewSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/MainBannerNewSectionData"
+          }
+        }
+      },
+      "MainBannerNewSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "image": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "TurnkeyBlockSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/TurnkeyBlockSectionData"
+          }
+        }
+      },
+      "TurnkeyBlockSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "list": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "slug": {
+                        "type": "string"
+                      },
+                      "date_create": {
+                        "type": "string"
+                      },
+                      "icon_img": {
+                        "type": "string"
+                      },
+                      "link": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "slider_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "WhoNeedsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/WhoNeedsSectionData"
+          }
+        }
+      },
+      "WhoNeedsSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DevelopWithUsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/DevelopWithUsSectionData"
+          }
+        }
+      },
+      "DevelopWithUsSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MoreQuestionsSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/MoreQuestionsSectionData"
+          }
+        }
+      },
+      "MoreQuestionsSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          }
+        }
+      },
+      "OutstaffOutsourceSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/OutstaffOutsourceSectionData"
+          }
+        }
+      },
+      "OutstaffOutsourceSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "descr": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CompanyHeaderSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/CompanyHeaderSectionData"
+          }
+        }
+      },
+      "CompanyHeaderSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "descr": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TeamSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/TeamSectionData"
+          }
+        }
+      },
+      "TeamSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "RequisitesSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/RequisitesSectionData"
+          }
+        }
+      },
+      "RequisitesSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "list_title": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AboutVacancySection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/AboutVacancySectionData"
+          }
+        }
+      },
+      "AboutVacancySectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "about_vacancy": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "date_create": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SalarySection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/SalarySectionData"
+          }
+        }
+      },
+      "SalarySectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "string"
+          }
+        }
+      },
+      "EmploymentTypeSection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "props": {
+            "$ref": "#/components/schemas/EmploymentTypeSectionData"
+          }
+        }
+      },
+      "EmploymentTypeSectionData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "date_create": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
