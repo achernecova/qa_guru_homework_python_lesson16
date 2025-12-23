@@ -11,4 +11,4 @@ def test_api_softmg():
         pretty_json = json.dumps(data, indent=4)
         print(pretty_json)
     else:
-        print(f"Ошибка запроса: {resource.status_code}")
+        raise ValueError(f"Ошибка запроса: {resource.status_code}")
