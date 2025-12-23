@@ -1,8 +1,6 @@
 import json
-import sys
 
 import requests
-
 
 
 def test_api_softmg():
@@ -14,4 +12,3 @@ def test_api_softmg():
         print(pretty_json)
     else:
         print(f"Ошибка запроса: {resource.status_code}")
-
